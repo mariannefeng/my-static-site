@@ -2,7 +2,6 @@ backend:
   name: github
   repo: mariannefeng/my-static-site
 
-
 display_url: https://cranky-swartz-76e317.netlify.com/
 # This line should *not* be indented
 publish_mode: editorial_workflow
@@ -13,12 +12,31 @@ public_folder: "/images/uploads" # The src attribute for uploaded media will beg
 # If public_folder is not set, Netlify CMS defaults to the same value as media_folder, adding an opening / if one is not included.
 
 collections:
-  - name: "page" # Used in routes, e.g., /admin/collections/blog
-    label: "Page" # Used in the UI
-    folder: "_pages" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{title}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
-      - {label: "Layout", name: "layout", widget: "hidden", default: "blog"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "About Page"
+        name: "about"
+        file: "site/content/about.yml"
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: markdown}
+          - label: Team
+            name: team
+            widget: list
+            fields:
+              - {label: Name, name: name, widget: string}
+              - {label: Position, name: position, widget: string}
+              - {label: Photo, name: photo, widget: image}
+      - label: "Locations Page"
+        name: "locations"
+        file: "site/content/locations.yml"
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Intro, name: intro, widget: markdown}
+          - label: Locations
+            name: locations
+            widget: list
+            fields:
+              - {label: Name, name: name, widget: string}
+              - {label: Address, name: address, widget: string}
